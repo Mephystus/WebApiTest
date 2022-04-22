@@ -1,4 +1,4 @@
-﻿namespace WebApiTest.Api.Models;
+﻿namespace WebApiTest.Models;
 
 public class Customer
 {

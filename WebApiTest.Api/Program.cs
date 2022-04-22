@@ -1,6 +1,12 @@
+using WebApiTest.Services.Implementations;
+using WebApiTest.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+
+builder.Services.AddScoped<ICustomerService, AnotherCustomerService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,4 +1,4 @@
-﻿namespace WebApiTest.Api.DataSource;
+﻿namespace WebApiTest.Services.DataSource;
 
 using Models;
 
@@ -26,6 +26,11 @@ public static class CustomerDataSource
             DateOfBirth = new DateTime(1986,1,12)
         }
     };
+
+    public static Customer GetCustomer(int id)
+    {
+        return _customers.First(x => x.Id == id);
+    }
 
     public static List<Customer> GetCustomers()
     {

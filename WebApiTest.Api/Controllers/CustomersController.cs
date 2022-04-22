@@ -1,28 +1,27 @@
 ﻿namespace WebApiTest.Api.Controllers;
 
-using DataSource;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Services.DataSource;
+using Services.Interfaces;
 
 [Route("api/[controller]")]
 [ApiController]
 public class CustomersController : ControllerBase
 {
+    private readonly ICustomerService _customerService;
+
+    public CustomersController(ICustomerService customerService)
+    {
+        _customerService = customerService;
+    }
+
     [HttpGet("{id:int}")]
     public IActionResult GetCustomer(int id)
     {
-        var customers = CustomerDataSource.GetCustomers();
+        var customer = _customerService.GetCustomer(id);
 
-        var customer = customers.FirstOrDefault(x => x.Id == id);
-
-        if (customer != null)
-        {
-            return Ok(customer);
-        }
-
-        var message = $"Customer {id} does not exist!";
-
-        return NotFound(message);
+        return Ok(customer);
     }
 
     [HttpDelete("{id:int}")]
